@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  url: MyString
+  start: 2016-04-10 08:54:42
+  volunteer: MyString
+
+two:
+  title: MyString
+  url: MyString
+  start: 2016-04-10 08:54:42
+  volunteer: MyString

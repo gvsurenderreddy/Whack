@@ -1,0 +1,39 @@
+.index{
+	background-image: url(/img/index.jpg);
+    background-size: cover;
+}
+.intro h1{
+	color: white;
+    margin-bottom: 30px;
+
+}
+.intro p{
+	color: gray;
+}
+.links{
+    margin-top: 20px;
+    margin-left: 200px;
+}
+.box{
+	float: left;
+	display: inline;
+	width: 200px;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	background-color: rgba(0,0,0,0.4);
+	border: 1px solid #717171;
+	border-radius: 10px;
+	margin-right: 20px;
+	margin-left: 20px;
+	color: gray;
+	font-size: 30px;
+
+}
+.box:hover{
+	background-color: rgba(0,0,0,0.3);
+	border: 1px solid white;
+	color: white;
+}
+.msg{
+	margin-bottom: 100px;
+}

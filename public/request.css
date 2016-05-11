@@ -1,0 +1,49 @@
+.request{
+	background-image: url(/img/live.jpg);
+	background-size: cover;
+}
+.request-box{
+	
+	border: 1px solid gray;
+}
+.req-box{
+	margin-bottom: 30px;
+	color: white;
+	font-size: 20px;
+
+}	
+.req-box2{
+	margin-top: 20px;
+	margin-bottom: 10px;
+	color: white;
+	font-size: 20px;
+}
+.ent-req{
+	font-size: 15px;
+	color: gray;
+	margin-bottom: 20px;
+}
+.ent-req input{
+	background-color: transparent; 
+	border: none;
+    border-bottom: 1px solid gray;
+    color: white;
+}
+table{
+	margin-top: 15px;
+	width: 700px;
+}
+table th{
+	color: white;
+}
+table td{
+	color: gray;
+}
+.notif a{
+    color: gray;
+}
+.notif a:hover{
+	background-color: none;
+
+	color: white;
+}

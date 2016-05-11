@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="/login.css">
+    <script type="text/javascript" src="/jquery-1.12.3.min.js"></script>
+
+</head>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.register').hide();
+        $('.login-content').show();
+        $('.btn1').click(function(){
+            $('.register').hide();
+            $('.login-content').show();
+        });
+        $('.btn2').click(function(){
+            $('.login-content').hide();
+            $('.register').show();
+        });
+    });
+</script>
+<body>
+<div class="form-horizontal">
+  <center><div id="main-container" class="container">
+      <div class="row">
+        <div class="col-xs-6">
+        
+  <% flash.each do |name, msg| -%>
+    <strong><%= content_tag :div, msg, class: 'alert alert-warning'%></strong>
+  <% end %>
+  </div></div></div><div></center>
+
+    <div class="login-cover">
+        <div class="heading">Whack</div><br>
+        <hr>
+        <div class="buttons">
+            <div class="btn1">Login</div>
+            <div class="btn2">Register</div>
+        </div>
+        <br>
+        
+        <a href="/logout">Logout</a>
+        <div class="login-content">
+            <%= form_tag(:action => 'attempt_login', :method => 'post') do %>
+      
+            <div class="user">Nick :</div><%= text_field_tag(:nick, "",  class: 'user' ) %>
+       
+            <div class="password">Password :</div><%= password_field_tag(:password, "", class: 'password' ) %>
+   
+          
+            <div class="clear"></div><br>
+
+            <%= submit_tag("Login", class: 'btn btn-default') %>
+
+          <% end %>
+        </div>
+
+        <div class="register">
+            <%= form_tag(:action => 'register', :method => 'post') do %>
+      
+            <div class="user2">Nick :</div><%= text_field_tag(:nick, "",  class: 'user2' ) %>
+       
+            <div class="password2">Password :</div><%= password_field_tag(:password, "", class: 'password2' ) %><br><br><br>
+
+            <div class="password3">Confirm Password :</div><%= password_field_tag(:confirm_password, "", class: 'password3' ) %>
+   
+          
+            
+
+            <%= submit_tag("Register", class: 'btn') %>
+
+          <% end %>
+        </div>
+        
+    </div>
+</body>
+</html>

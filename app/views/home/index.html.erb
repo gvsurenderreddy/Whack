@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>fullPage.js One Page Scroll Sites</title>
+	<meta name="author" content="Alvaro Trigo Lopez" />
+	<meta name="description" content="fullPage plugin by Alvaro Trigo. Create fullscreen pages fast and simple. One page scroll like iPhone website." />
+	<meta name="keywords"  content="fullpage,jquery,alvaro,trigo,plugin,fullscren,screen,full,iphone5,apple" />
+	<meta name="Resource-type" content="Document" />
+
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <link rel="stylesheet" type="text/css" href="/media.css" />
+    <link rel="stylesheet" type="text/css" href="/file-sharing.css" />
+	<link rel="stylesheet" type="text/css" href="/jquery.fullPage.css" />
+	<link rel="stylesheet" type="text/css" href="/examples.css" />
+	<link rel="stylesheet" type="text/css" href="/live.css" />
+	<link rel="stylesheet" type="text/css" href="/request.css" />
+
+
+	<style>
+
+		/* Sections
+		 * --------------------------------------- */
+		#section0 img,
+		#section1 img{
+			margin: 20px 0 0 0;
+		}
+		#section2 img{
+			margin: 20px 0 0 52px;
+		}
+		#section3 img{
+			bottom: 0px;
+			position: absolute;
+			margin-left: -420px;
+		}
+		.intro p{
+			width: 50%;
+			margin: 0 auto;
+			font-size: 1.5em;
+		}
+		.twitter-share-button{
+			position: absolute;
+			z-index: 99;
+			right: 149px;
+			top: 9px;
+		}
+
+	</style>
+	<!--[if IE]>
+		<script type="text/javascript">
+			 var console = { log: function() {} };
+		</script>
+	<![endif]-->
+
+	<script type="text/javascript" src="/jquery-1.12.3.min.js"></script>
+
+	<script type="text/javascript" src="/jquery.fullPage.js"></script>
+	<script type="text/javascript" src="/examples.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#fullpage').fullpage({
+				sectionsColor: ['#1bbc9b', '#4BBFC3', '#4BBFC3'],
+				anchors: ['firstPage', 'secondPage', 'thirdPage'],
+				menu: '#menu',
+				scrollingSpeed: 1000
+			});
+
+		});
+	</script>
+
+</head>
+<body>
+
+
+
+
+<ul id="menu">
+	<li data-menuanchor="thirdPage"><a href="#">Hello <%= session[:nick]%></a></li>
+	<li data-menuanchor="firstPage"><a href="#firstPage">Home</a></li>
+	<li data-menuanchor="firstPage"><a href="#firstPage/1">Media Sharing</a></li>
+	<li data-menuanchor="firstPage"><a href="#firstPage/2">Live Streaming</a></li>
+	<li data-menuanchor="secondPage"><a href="#secondPage">File Sharing</a></li>
+	<li data-menuanchor="thirdPage"><a href="#thirdPage">Request Stream</a></li>
+	<li><a href="/authenticate/logout">Logout</a></li>
+</ul>
+
+
+<div id="fullpage">
+	
+	<div class="section" id="section1">
+
+	    
+
+
+	    <div class="slide index">
+			<div class="intro">
+				
+				<% flash.each do |name, msg| -%>
+    				<font color="white"><strong><%= content_tag :div, msg, class: 'msg'%></strong></font>
+  			<% end %>
+
+				<h1>Whack</h1>
+
+				<p>Creativity is contagious. Pass it on.</p>
+			</div>
+			<div class="links">
+				
+                <a href="#secondPage"><div class="box">
+					File<br><br>Sharing
+				</div></a>
+
+				<a href="#firstPage/1"><div class="box">
+					Media<br><br>Sharing
+				</div></a>
+
+				
+
+				<a href="#firstPage/2"><div class="box">
+					Live<br><br>Stream
+				</div></a>
+
+				<a href="#thirdPage"><div class="box">
+					Request<br><br>Stream
+				</div></a>
+
+			</div>
+		</div>
+
+		<div class="slide media">
+
+
+			<div class="video">
+			    <div class="upload-btn">
+			    <%= form_for @video ,url: {action: "upload_video"}, :remote => true  do |f| %>
+				  
+					<%= f.submit "Upload", :class => 'video-upload'%><%= f.file_field :link , :class => 'file-input' %>
+
+				<% end %>
+			    </div>
+
+			    <script type="text/javascript">
+			    	$(document).ready(function(){
+                        $('.video-entry').click(function(){
+                            var link = $(this).find('img').attr('alt');
+                            var title = $(this).find('.video-des-head').html();
+                            $('.video-title').html(title);
+                            $('.video-player').attr('src', link);
+                        });
+			    	});
+			    </script>
+
+				<video controls preload="auto" class="video-player" width="854" height="480">
+    			<source src="" type='video/mp4'>
+    			
+  				</video>
+                <br>
+                <div class="video-title">
+                	<p></p>
+            
+                </div>
+
+			</div>
+            
+			<div class="video-list">
+				<% @videos.each do |video| %>
+				<div class="video-entry">
+					<div class="video-image">
+						<img src="/play.png" alt="/home/play_video/<%=video.token%>" height="50px" width="50px">
+					</div>
+					<div class="video-des">
+					    <p class="video-des-head"><%= video.link.file.identifier[0..45] %></p><br><br>
+						<p class="video-des-des">Uploaded by: <%= video.user%></p>
+						<p class="video-des-des"><% if video.user == session[:nick] %> <a href = "/home/delete_video/<%=video.token%>">Delete</a><% end %> </p>
+
+					</div>
+				</div>
+				<% end %>
+
+
+
+				
+
+
+
+			</div>
+
+		</div>
+
+		<link href="/video-js.css" rel="stylesheet">
+
+  			<!-- If you'd like to support IE8 -->
+  		<script src="/videojs-ie8.min.js"></script>
+  		<script src="/videojs.js"></script>
+
+
+	    <div class="slide live">
+
+			<div class="video">
+			    <script type="text/javascript">
+			    	$(document).ready(function(){
+                        $('.stream-box').click(function(){
+                            window.top.close();
+                        });
+			    	});
+			    </script>
+
+				<video id="my-video" class="video-js" controls preload="auto" width="854" height="480"
+  				poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+    			<source class="play-video" <% if @now_stream %> src="<%=@now_stream.link%>" <% else %> src="" <% end %>type='rtmp/mp4'>
+    			<p class="vjs-no-js">
+      				To view this video please enable JavaScript, and consider upgrading to a web browser that
+      				<a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    			</p>
+  				</video>
+
+                <br>
+                <div class="video-title">
+                	<p><% if @now_stream %> <%=@now_stream.title%> <% end %></p>
+                	
+
+                </div>
+
+			</div>
+
+			<div class="streams">
+				<div class="stream-heading">
+					Now Streaming
+				</div>
+				<div class="stream-content">
+				<% @live_streams.each do |stream| %>
+
+				
+					<a href="/<%=stream.id%>/#firstPage/2" target="_blank"><div class="stream-box">
+						<div class="stream-img">							
+							<img src="/play.png" height="100px" width="100px" alt="<%=stream.link %>">
+						</div>
+						<div class="stream-title">
+							<p class="to_get"><%= stream.title %></p>
+							<p>By : <%= stream.user %></p>
+						</div></a>
+					</div>
+					
+
+				<% end %>
+                </div>
+					
+					
+					
+
+				
+			</div>
+            
+		</div>
+
+	    
+	</div>
+
+
+    <script type="text/javascript">
+    	$(document).ready(function(){
+            $('.get_file').click(function(){
+            	var value = $('.value').val();
+                window.open("/home/download_file/" + value);
+                $('.value').val("");
+            }); 
+    	});
+    </script>
+
+	<div class="section file" id="section2">
+		
+		<% flash.each do |name, msg| -%>
+    				<font color="white"><strong><%= content_tag :div, msg, class: 'alert alert-info'%></strong></font>
+  			<% end %>
+
+  			
+
+		<button class="download">
+				<p>Download</p>				
+			</button>
+			<div class="down-content">
+				<input type="text" placeholder="Paste the token of the file to be downloaded" class="value"></input>
+				<button class="get_file">Get the file !</button>
+			</div>
+			<div class="clear"></div>
+			<button class="share">
+				<p>Share</p>				
+			</button>
+			<div class="share-content">
+			<%= form_for @file ,url: {action: "upload_file"}, :remote => true  do |f| %>
+				  <%= f.file_field :link , :class => 'file-input' %>
+				  Delete after <%= f.text_field("max_downloads" ,:class =>'num', :maxlength =>2, :required => true) %> downloads.
+				 <%= f.submit "Upload", :class => 'upload-button upd2'%>
+			<% end %>
+			</div>
+
+  	        <%= form_for @share_file ,url: {action: "share_file"}  do |f| %>
+				  <%= f.text_field("token" ,:class =>'num share_friend',:required => true, :placeholder=>"Enter file's token") %>
+				   <%= f.text_field("shared_to" ,:class =>'num share_friend',:required => true, :placeholder=>"Enter yout friend's nick") %> 
+
+				 <%= f.submit "Share", :class => 'upload-button'%>
+			<% end %>
+
+            <div class="prev">
+			    <div class="head">Your Previous uploads</div><br>
+
+				<div class="entry">
+				    <table border="0" cellspacing="0" cellpadding="5">
+				    	<% @files.each do |file| %>
+				    	<tr>
+				    		<td><%= file.link.file.identifier %></td>
+				    		<td>Token : <%= file.token %></td>
+				    		<td><a href="/home/delete_file/<%=file.token%>">Delete</a></td>
+				    		<% if file.max_downloads%>
+				    		<td>Downloads Remaining : <%= file.max_downloads - 1 %></td>
+				    		<% end %><br>
+				    	</tr>
+				    	<% end %>
+				    	<tr><td>-</td><td>-</td><td>-</td></tr>
+				    	<% @shared_files.each do |file| %>
+				    	<tr>
+				    		<td>Shared On: <%= file.created_at  %></td>
+				    		<td>Token : <%= file.token %></td>
+				    		<td>Owner : <%= file.owner%></td><br>
+				    	</tr>
+				    	<% end %>
+				    </table>
+				</div>
+
+			</div>
+	</div>
+
+	<div class="section request" id="section3">
+	    
+	    <p class="req-box2 notif">We recommend using <a href="https://obsproject.com/">Open Broadcast Software</a> to stream to our servers, a detailed tutorial on how to use OBS will be put up soon.</p>
+
+        <div class="request-box">
+            <center>
+         	<p class="req-box">Request Box</p>
+         	<%= form_for @request_stream ,url: {action: "stream_request"} do |f| %>
+				  <p class="ent-req">Enter Request<%= f.text_field :title ,:required => true%>
+				  Enter URL <%= f.text_field :url,:required => true %>
+				  Enter Start time<%=datetime_select("request_stream" ,"start", ampm: true, prompt: true, :required => true)%>
+				  
+				 <%= f.submit "Submit", :class => 'upload-button'%></p>
+			<% end %>
+      		<p class="req-box2">Requested Streams</p>
+         	<table>
+         		<% @all_requests.each do |req|%>
+         		<tr>
+         			<td>Requested By : <%=req.by %></td>
+         			<td><%=req.title %></td>
+         			<td>URL : <%=req.url %></td>
+         			<td>Starts On: <%=req.start.strftime("%a, %d-%m-%Y  %I:%M %p") %></td>
+         			<td><% if req.volunteer.blank? %> <a href="/home/volunteer_stream/<%= req.id %>"><font color="white">Volunteer</font></a><% else %> Volunteered by : <%=req.volunteer %></td><% end %>
+         		</tr>
+         		<% end %>
+         	</table>
+
+         	<p class="req-box2">Upcomming Streams</p>
+         	<table>
+         		<% @new_streams.each do |req|%>
+         		<tr>
+         			<td>Streamed By : <%=req.user %></td>
+         			<td><%=req.title %></td>
+         			<td>Starts On: <%=req.start_time.strftime("%a, %d-%m-%Y  %I:%M %p") %></td>
+         			<td>Ends On: <%=req.end_time.strftime("%a, %d-%m-%Y  %I:%M %p")  %></td>
+         		</tr>
+         		<% end %>
+         	</table>
+         	<% if session[:nick] == "JLC" %><p class="req-box2">Add Stream</p>
+         		<%= form_for @live_stream ,url: {action: "new_stream"} do |f| %>
+				  	<p class="ent-req">Enter Title<%= f.text_field :title ,:required => true%>
+				  	Enter URL <%= f.text_field :link,:required => true %>
+				  	Enter User <%= f.text_field :user,:required => true %>
+				  	<br><br>Enter Start time<%=datetime_select("live_stream" ,"start_time", ampm: true, prompt: true, :required => true)%>
+				  	Enter End time<%=datetime_select("live_stream" ,"end_time", ampm: true, prompt: true, :required => true)%>
+				  
+				 	<%= f.submit "Submit", :class => 'upload-button'%><br></p>
+				<% end %>
+		    <% end %>
+         	</center>
+        </div> 
+	</div>
+	
+</div>
+
+</body>
+</html>

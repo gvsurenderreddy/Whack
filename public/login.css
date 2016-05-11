@@ -1,0 +1,94 @@
+body{
+	background-image: url(/img/login.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.login-cover{
+	margin-left: 290px;
+	margin-top: 80px;
+	width: 700px;
+	border: 1px solid gray;
+	padding: 20px;
+	background-color: rgba(0,0,0,0.5);
+}
+.heading{
+	font-size: 50px;
+	color: white;
+}
+.btn1{
+	color: #f1f1f1;
+	float: left;
+	display: inline;
+	width: 340px;
+	text-align: center;
+	border: 1px solid gray;
+	
+}
+.btn2{
+	color: #f1f1f1;
+	float: left;
+	display: inline;
+	width: 340px;
+	text-align: center;
+	border: 1px solid gray;
+}
+.login-content{
+	margin-top: 20px;
+	margin-bottom: 20px;
+
+	color: white;
+}
+.login-content button{
+	float: right;
+	margin-top: 20px;
+	margin-right: 70px;
+}
+.user{
+	display: inline;
+	float: left;
+	margin-left: 20px;
+}
+.password{
+	display: inline;
+	float: left;
+	margin-left: 20px;
+}
+.clear{
+	clear: both;
+}
+.user2{
+	display: inline;
+	margin-left: 20px;
+	float: left;
+	margin-top: 10px;
+	margin-bottom: 10px;	
+	color: white;
+}
+.password2{
+	margin-left: 20px;
+    display: inline;
+	float: left;
+	
+	margin-top: 10px;
+	margin-bottom: 10px;
+	color: white;
+}
+.password3{
+	
+	margin-left: 20px;
+	float: left;
+	color: white; 
+}
+
+.register{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.btn{
+	margin-left: 50px;
+	
+	
+}
+.login-cover a{
+	color: white;
+}

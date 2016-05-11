@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: MyString
+  link: MyString
+  max_downloads: MyString
+
+two:
+  user: MyString
+  link: MyString
+  max_downloads: MyString

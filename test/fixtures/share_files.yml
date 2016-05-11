@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  owner: MyString
+  shared_to: MyString
+  token: MyString
+
+two:
+  owner: MyString
+  shared_to: MyString
+  token: MyString
