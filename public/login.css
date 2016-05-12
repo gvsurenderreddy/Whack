@@ -62,7 +62,7 @@ body{
 	float: left;
 	margin-top: 10px;
 	margin-bottom: 10px;	
-	color: white;
+	
 }
 .password2{
 	margin-left: 20px;
@@ -71,13 +71,13 @@ body{
 	
 	margin-top: 10px;
 	margin-bottom: 10px;
-	color: white;
+	
 }
 .password3{
 	
 	margin-left: 20px;
 	float: left;
-	color: white; 
+	
 }
 
 .register{
