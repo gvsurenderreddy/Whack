@@ -66,9 +66,7 @@ body{
 	
 }
 
-.user2 input{
-	color:black;
-}
+
 .password2{
 	margin-left: 20px;
     display: inline;
@@ -79,9 +77,6 @@ body{
 	color:white;
 }
 
-.password2 input{
-	color:black;
-}
 
 .password3{
 	
@@ -90,7 +85,7 @@ body{
 	color:white;
 }
 
-.password3 input{
+.black{
 	color:black;
 }
 
